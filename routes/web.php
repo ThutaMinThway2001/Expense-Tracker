@@ -24,7 +24,7 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(IncomeController::class)->group(function () {
         Route::get('/income', 'index')->name('indexIncome');
-        Route::get('/income/create-income', 'create')->name('createIncome');
+        Route::get('/income/create-income', 'create')->name('   ');
         Route::post('/income/create-income', 'store')->name('storeIncome');
         Route::get('/income/edit-income/{income}', 'edit')->name('editIncome');
         Route::delete('/income/{income}', 'delete')->name('deleteIncome');
