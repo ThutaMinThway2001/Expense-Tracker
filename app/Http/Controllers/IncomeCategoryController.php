@@ -11,7 +11,8 @@ class IncomeCategoryController extends Controller
 {
     public function index()
     {
-        $income_categories = IncomeCategory::all();
+        $income_categories = IncomeCategory::whereUserId(auth()->id())->with('income')->latest()->get();
+        // return $income_categories->income;
         return view('Income-Category.income-category', [
             'categories' => $income_categories,
         ]);

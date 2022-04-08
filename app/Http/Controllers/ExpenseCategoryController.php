@@ -10,7 +10,8 @@ class ExpenseCategoryController extends Controller
 {
     public function index()
     {
-        $expense_categories = ExpenseCategory::all();
+        $expense_categories = ExpenseCategory::whereUserId(auth()->id())->with('expense')->latest()->get();
+        // return $expense_categories;
         return view('Expense-Category.expense-category', [
             'categories' => $expense_categories
         ]);

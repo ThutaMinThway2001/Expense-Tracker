@@ -20,11 +20,11 @@ class PaymentSeeder extends Seeder
 
         Payment::create([
             'name' => 'Cash',
-            // 'user_id' => auth()->id()
+            'user_id' => 1
         ]);
         Payment::create([
             'name' => 'Credit Card',
-            // 'user_id' => auth()->id()
+            'user_id' => 1
         ]);
     }
 }

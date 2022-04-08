@@ -11,7 +11,7 @@
             duration-500">
             See All Income Categories
         </a>
-        <a href="{{route('createIncome')}}" class="
+        <a href="{{route('create')}}" class="
             bg-indigo-500 
             text-white p-2 
             text-center 

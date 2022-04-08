@@ -6,6 +6,7 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\IncomeCategoryController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\MonthlyReportController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Models\IncomeCategory;
@@ -24,7 +25,7 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(IncomeController::class)->group(function () {
         Route::get('/income', 'index')->name('indexIncome');
-        Route::get('/income/create-income', 'create')->name('   ');
+        Route::get('/income/create-income', 'create')->name('create');
         Route::post('/income/create-income', 'store')->name('storeIncome');
         Route::get('/income/edit-income/{income}', 'edit')->name('editIncome');
         Route::delete('/income/{income}', 'delete')->name('deleteIncome');
@@ -57,13 +58,19 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/monthly-reports', [MonthlyReportController::class, 'index'])->name('monthlyReports');
+
+    Route::controller(PaymentController::class)->group(function(){
+        Route::get('/payment/payment-create', 'create')->name('createPayment');
+        Route::post('/payment/payment-create', 'store')->name('storePayment');
+        Route::delete('/payment/payment-create/{payment}', 'delete')->name('deletePayment');
+    });
 });
 
 Route::middleware('admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('adminPanel');
     Route::get('/admin/users', [AdminController::class, 'users'])->name('users');
     Route::get('/admin/admins', [AdminController::class, 'admins'])->name('admins');
-    Route::get('/admin/edit-user/{user}', [AdminController::class, 'editUser'])->name('editUser');
+    // Route::get('/admin/edit-user/{user}', [AdminController::class, 'editUser'])->name('editUser');
     Route::delete('/admin/user/delete/{user}', [AdminController::class, 'delete'])->name('deleteUser');
 });
 

@@ -9,11 +9,11 @@ class Income extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public function income_category()
     {
-        return $this->belongsTo(IncomeCategory::class);
+        return $this->belongsTo(IncomeCategory::class, 'income_category_id');
     }
 
     public function payment()

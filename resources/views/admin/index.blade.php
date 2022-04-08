@@ -1,28 +1,31 @@
 <x-admin-layout>
-    <x-admin-nav>
-        <div class="flex flex-wrap justify-center">
-
-            <div class="flex flex-col bg-gray-200 rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52">
-
-                <div class="h-20 m-6">
-                    <h2 class="text-center text-3xl px-2 pb-5 mt-5">{{$user_counts}}</h2>
+    <main class="mt-5 pt-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h4 class="text-center h2">Dashboard</h4>
+          </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12 col-sm-6 col-md-6">
+                <div class="card text-white bg-success mb-3 text-center">
+                <div class="card-header h3">Total Users</div>
+                <div class="card-body">
+                    <h5 class="card-title text-center h1">{{$user_counts}}</h5>
+                    <a class="btn btn-light" href="{{route('users')}}">See More</a>
                 </div>
-                <h2 class="text-center px-2 pb-5 text-2xl">Total Users</h2>
-                <a href="{{route('indexExpense')}}"
-                    class=" bg-blue-500 text-white p-3 text-center hover:bg-blue-800 transition-all duration-500">See
-                    All</a>
+                </div>
             </div>
-
-            <div class="flex flex-col bg-gray-200 rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52">
-
-                <div class="h-20 m-6">
-                    <h2 class="text-center text-3xl px-2 pb-5 mt-5">{{$admin_counts}}</h2>
+            <div class="col-12 col-sm-6 col-md-6">
+                <div class="card text-white bg-success mb-3 text-center">
+                <div class="card-header h3">Total Admins</div>
+                <div class="card-body">
+                    <h5 class="card-title text-center h1">{{$admin_counts}}</h5>
+                    <a class="btn btn-light" href="{{route('admins')}}">See More</a>
                 </div>
-                <h2 class="text-center px-2 pb-5 text-2xl">Total Admins</h2>
-                <a href="{{route('indexExpense')}}"
-                    class=" bg-blue-500 text-white p-3 text-center hover:bg-blue-800 transition-all duration-500">See
-                    All</a>
+                </div>
             </div>
         </div>
-    </x-admin-nav>
+      </div>
+    </main>
 </x-admin-layout>

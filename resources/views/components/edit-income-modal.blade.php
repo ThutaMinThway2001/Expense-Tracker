@@ -1,5 +1,6 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
-<div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+<div class="container">
+    <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="flex items-end justify-center text-center sm:block sm:p-0">
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true">
         </div>
@@ -85,7 +86,7 @@
                                             </div>
                                         </div>
                                         <h1>Or Create A new One.</h1>
-                                        <a href="{{route('createIncome')}}">Click Here</a>
+                                        <a href="{{route('create')}}">Click Here</a>
 
                                     </div>
                                 </div>
@@ -100,4 +101,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

@@ -1,28 +1,52 @@
-<div class="col-span-4">
-    <div class="flex flex-col">
-        <div class="flex flex-col bg-white h-24 p-2 drop-shadow-2xl">
-            <div class="flex justify-between space-x-3">
-
-                <a href="{{route('adminPanel')}}">
-                    <h4 class="font-bold text-gray-500 p-1 text-2xl mt-6">Dashboard</h4>
-                </a>
-                <div class="flex justify-end ...">
-                    <h4 class="font-bold text-gray-500 p-1 text-2xl mt-6">Admin, {{auth()->user()->name}}</h4>
-                    <div class="px-4 py-3 bg-gray-50 text-right sm:px-6 mt-3">
-                        <form action="{{route('logout')}}" method="post">
-                            @csrf
-                            <button
-                                class="bg-indigo-500 text-white p-2 text-center rounded hover:bg-blue-800 transition-all duration-500">Sign
-                                out</button>
-                        </form>
-                    </div>
-
-                </div>
-
-            </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#sidebar"
+          aria-controls="offcanvasExample"
+        >
+          <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
+        </button>
+        <a
+          class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold"
+          href="#"
+          >Admin panel</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#topNavBar"
+          aria-controls="topNavBar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="topNavBar">
+        <div class="d-flex ms-auto my-3 my-lg-0"></div>
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle ms-2"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="bi bi-person-fill">
+                <span>{{auth()->user()->name}}</span>
+                </i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item" href="#">Logout</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
-
-        {{$slot}}
-
-    </div>
-</div>
+      </div>
+    </nav>

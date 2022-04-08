@@ -9,7 +9,8 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $user_counts = User::where('isAdmin', 0)->get()->count();
+        $user_counts = User::all()->count();
+        // return $user_counts;
         $admin_counts = User::where('isAdmin', 1)->get()->count();
 
         return view('admin.index', [

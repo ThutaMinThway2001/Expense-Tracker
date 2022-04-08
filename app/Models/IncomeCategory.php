@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class IncomeCategory extends Model
 {
     use HasFactory;
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    protected $guarded = [];
+    public function income(){
+        return $this->hasMany(Income::class);
+    }
 }

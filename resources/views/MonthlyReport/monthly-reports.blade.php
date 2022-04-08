@@ -3,6 +3,7 @@
         <h1 class="text-3xl font-bold text-gray-900">Monthly Reports</h1>
     </x-header>
     <x-main>
+        
         <form action="{{route('monthlyReports')}}" method="get">
             <div class="grid grid-cols-6 gap-6">
 
@@ -52,77 +53,88 @@
             </div>
         </form>
 
-        <div class="mt-10">
-            <div class="grid grid-cols-12 gap gap-10    ">
-                <table class="col-span-4 w-full border-collapse border border-slate-400 table-auto">
-                    <thead class="bg-gray-50 border-b-2 border-gray-200">
-                        <th>
-                            <h1 class="text-2xl p-4">Profit</h1>
-                        </th>
-                    </thead>
-                    <thead class="bg-gray-50 border-b-2 border-gray-200">
-                        <tr>
-                            <th class="p-3 text-sm font-semibold tracking-wide text-left uppercase">Income</th>
-                            <th class="p-3 text-sm font-semibold tracking-wide text-left uppercase">
-                                {{$income_total_amount}}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-3 text-sm font-semibold tracking-wide text-left uppercase">Expense</th>
-                            <th class="p-3 text-sm font-semibold tracking-wide text-left uppercase">
-                                {{$expense_total_amount}}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-3 text-sm font-semibold tracking-wide text-left uppercase">Profit</th>
-                            <th class="p-3 text-sm font-semibold tracking-wide text-left uppercase">
-                                {{$profit}}</th>
-                        </tr>
-                    </thead>
-                </table>
+        <div class="container mt-10">
+            <div class="row">
+                <div class="col-md-4 col-12 col-sm-6">
+                    <table class="table table-dark table-striped p-4">
+                        <thead >
+                            <tr>
+                                <th class="d-flex justify-content-between align-items-center">
+                                <span class="h3">Profit</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>Income</td>
+                            <td>{{number_format($income_total_amount, 2, ',', '.')}}</td>
+                            </tr>
+                            <tr>
+                            <td>Expense</td>
+                            <td>{{number_format($expense_total_amount, 2, ',', '.')}}</td>
+                            </tr>
+                            <tr>
+                            <td>Profit</td>
+                            <td>{{number_format($profit, 2, ',', '.')}}</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                </div>
 
-                <table class="col-span-4 w-full border-collapse border border-slate-400 table-auto">
-                    <thead class="bg-gray-50 border-b-2 border-gray-200">
-                        <tr>
-                            <th class="p-3 text-sm font-semibold tracking-wide text-left uppercase">Income Category</th>
-                            <th class="p-3 text-sm font-semibold tracking-wide text-left uppercase">
-                                {{$income_total_amount}}ks</th>
+                <div class="col-md-4 col-12 col-sm-6">
+                    <table class="table table-dark table-striped p-4">
+                        <thead >
+                            <tr >
+                                <th>
+                                <span class="h4">Income Category</span>
+                                </th>
+                                <th class="h4">
+                                {{$income_total_amount}}ks
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @forelse ($income_summary as $income)
+                            <tr>
+                            <td>{{$income['name']}}</td>
+                            <td>{{number_format($income['amount'], 2, ',', '.')}}</td>
+                            </tr>
+                            <tr>
+                        @empty
+                            <tr>
+                                <td scope="3">No Incomes Category Yet!</td>
+                            </tr>
+                        @endforelse
+                        </tbody>
+                        </table>
+                </div>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($income_summary as $income)
-                        <tr>
-                            <td class="p-3 ">{{$income['name']}}</td>
-                            <td class="p-3 text-sm text-gray-700content-center m-2 ">
-                                <span class="col-span-2">{{$income['amount']}}</span>
-                            </td>
-                        </tr>
-                        @endforeach
-
-                    </tbody>
-                </table>
-
-                <table class="col-span-4 w-full border-collapse border border-slate-400 table-auto">
-                    <thead class="bg-gray-50 border-b-2 border-gray-200">
-                        <tr>
-                            <th class="p-3 text-sm font-semibold tracking-wide text-left uppercase">Expense Category
-                            </th>
-                            <th class="p-3 text-sm font-semibold tracking-wide text-left uppercase">
-                                {{$expense_total_amount}}ks</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($expense_summary as $expense)
-                        <tr>
-                            <td class="p-3 ">{{$expense['name']}}</td>
-                            <td class="p-3 text-sm text-gray-700content-center m-2 ">
-                                <span class="col-span-2">{{$expense['amount']}}</span>
-                            </td>
-                        </tr>
-                        @endforeach
-
-                    </tbody>
-                </table>
+                <div class="col-md-4 col-12 col-sm-6">
+                    <table class="table table-dark table-striped p-4">
+                        <thead >
+                            <tr>
+                                <th class="h4">
+                                Expense Category
+                                </th>
+                                <th class="h4">
+                                {{$expense_total_amount}}ks
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @forelse ($expense_summary as $expense)
+                            <tr>
+                            <td>{{$expense['name']}}</td>
+                            <td>{{number_format($expense['amount'], 2, ',', ' ')}}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td scope="3">No Expense Category Yet!</td>
+                            </tr>
+                        @endforelse
+                        </tbody>
+                        </table>
+                </div>
             </div>
         </div>
     </x-main>

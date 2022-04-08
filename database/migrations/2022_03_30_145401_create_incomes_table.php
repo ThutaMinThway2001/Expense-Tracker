@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('income_category_id');
             $table->text('description')->nullable();
+            $table->date('entry_date')->nullable();
             $table->string('amount');
             $table->foreignId('payment_id');
-            $table->date('entry_date')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();

@@ -1,5 +1,5 @@
 <div class="grid grid-cols-5 gap-4">
-    <div class="col-span-2 mt-10 sm:mt-0">
+    <div class="col-span-5 mt-10 sm:mt-0 sm:col-span-5 md:col-span-2">
         <div class="md:grid md:gap-6">
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <form action="{{route('storeIncomeCategory')}}" method="POST">
@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-    <div class="col-span-3 mt-10 sm:mt-0">
+    <div class="col-span-5 mt-10 sm:mt-0 sm:col-span-5 md:col-span-3">
         <div class="md:grid md:gap-6">
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <form action="{{route('storeIncome')}}" method="POST">

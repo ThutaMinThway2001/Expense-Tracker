@@ -19,7 +19,7 @@
             <li><a class="dropdown-item" href="{{route('indexIncome')}}">Income</a></li>
             <li><a class="dropdown-item" href="{{route('indexIncomeCategory')}}">Income Categories</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{{route('createIncome')}}">Create Income</a></li>
+            <li><a class="dropdown-item" href="{{route('create')}}">Create Income</a></li>
           </ul>
         </li>
 
@@ -32,6 +32,17 @@
             <li><a class="dropdown-item" href="{{route('indexExpenseCategory')}}">Expense Categories</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{{route('createExpense')}}">Create Expense</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <button class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Payment
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Payment</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{route('createPayment')}}">Create Payment</a></li>
           </ul>
         </li>
 

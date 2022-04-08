@@ -9,5 +9,12 @@ class Payment extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    public function income(){
+        return $this->hasMany(Income::class);
+    }
+    public function expense(){
+        return $this->hasMany(Expense::class);
+    }
 }
