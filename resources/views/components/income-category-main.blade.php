@@ -2,57 +2,76 @@
     {{$slot}}
 
     <div class="container">
-        <div class="table-responsive">
-            <table class="table table-dark table-striped p-4">
-        <thead >
-            <tr>
-                <th class="d-flex justify-content-between align-items-center">
-                <span class="h3">Incomes Category</span>
-                <a href="{{route('create')}}" class="btn btn-primary">Create</a>
-                </th>
-            </tr>
-        </thead>
-        <thead>
-            <tr>
-            <td scope="col">ID</td>
-            <th scope="col">Name</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($categories as $category)
-        @php
-            $disableTrue = $category->income;
-            
-        @endphp
-                <tr>
-                    <th>{{$loop->iteration}}</th>
-                    <td>{{$category->name}}</td>
-                    
-                    <td>
-                        <a href="{{route('editIncomeCategory', $category)}}" class="btn btn-warning">EDIT</a>
-                    </td>
-                        <td>
-                            <form action="{{route('deleteIncomeCategory', $category)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            @if($category->income->isEmpty())
-                                <button type="submit" class="btn btn-danger">DELETE</button>  
-                            @else     
-                                <button type="submit" class="btn btn-danger" disabled>DELETE</button>  
-                            @endif
-                            </form>
-                        </td>
-                </tr>
-                @empty
-                <tr>
-                    <td colspan="8" class="text-center h3">No Incomes Category Yet</td>
-                </tr>
-            @endforelse
-        </tbody>
-        </table>
+        <div class="card">
+            <div class="card-body">
+                <table id="example" class="table table-bordered datatable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <td scope="col" class="text-center">ID</td>
+                            <th scope="col" class="text-center">Name</th>
+                            <th scope="col" class="text-center">Edit</th>
+                            <th scope="col" class="text-center">Delete</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
         </div>
     </div>
 
 </x-main>
+
+@section('scripts')
+    <script>
+        $(function() {
+            var table = $('.datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                ajax: '{!! route('indexIncomeCategory') !!}',
+                columns: [
+                    { data: 'id', name: 'id', class: 'text-center' },
+                    { data: 'name', name: 'name' , class: 'text-center' },
+                    { data: 'actions', name: 'actions', class: 'text-center'},
+                    { data: 'updated_at', name: 'updated_at', class: 'text-center' }
+                ],
+                "columnDefs": [ {
+                    "targets": 3,
+                    "visible": false,
+                } ],
+                order: [[3, 'desc']],
+                "language": {
+                    "paginate": {
+                    "previous": "<i class='fas fa-angle-left'></i>",
+                    "next": "<i class='fas fa-angle-right'></i>"
+                    },
+                    "processing": "<img src='/image/loading.gif' style='width: 50%; height: 50%;  text-align: center;' />"
+                }
+            });
+
+            $(document).on('click', '.delete-btn', function(event){
+                event.preventDefault();
+                var id = $(this).data('id');
+                
+
+                swal({
+                    title: "Are you sure?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            method: "DELETE",
+                            url: `/income/income-category/${id}`,
+                            })
+                            .done(function( response ) {
+                                table.ajax.reload();
+                            });
+                    }
+                    });
+            })
+        });
+    </script>
+@endsection

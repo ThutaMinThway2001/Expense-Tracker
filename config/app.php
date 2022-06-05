@@ -167,6 +167,8 @@ return [
         /*
          * Package Service Providers...
          */
+        Yajra\Datatables\DatatablesServiceProvider::class,
+        Meneses\LaravelMpdf\LaravelMpdfServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -192,6 +194,9 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // ...
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+        'PDF' => Meneses\LaravelMpdf\Facades\LaravelMpdf::class
+
     ])->toArray(),
 
 ];

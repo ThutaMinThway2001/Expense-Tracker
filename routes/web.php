@@ -58,6 +58,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/monthly-reports', [MonthlyReportController::class, 'index'])->name('monthlyReports');
+    Route::get('/monthly-pdf', [MonthlyReportController::class, 'pdfDownload'])->name('monthlyPdfDownload');
 
     Route::controller(PaymentController::class)->group(function(){
         Route::get('/payment/payment-create', 'create')->name('createPayment');
@@ -70,7 +71,6 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('adminPanel');
     Route::get('/admin/users', [AdminController::class, 'users'])->name('users');
     Route::get('/admin/admins', [AdminController::class, 'admins'])->name('admins');
-    // Route::get('/admin/edit-user/{user}', [AdminController::class, 'editUser'])->name('editUser');
     Route::delete('/admin/user/delete/{user}', [AdminController::class, 'delete'])->name('deleteUser');
 });
 

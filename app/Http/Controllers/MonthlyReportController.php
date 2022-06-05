@@ -6,26 +6,27 @@ use App\Models\Expense;
 use App\Models\Income;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PDF;
 
 class MonthlyReportController extends Controller
 {
     public function index(Request $request)
     {
-        $from = Carbon::parse(sprintf(
-            '%s-%s-01',
-            $request->query('y', Carbon::now()->year),
-            $request->query('m', Carbon::now()->month)
-        ));
 
-        $to = clone $from;
-        $to->day = $to->daysInMonth;
-        // return $from . $to;
+        dump(request('startDate'));
+        dump(request('endDate'));
+
+        $from = request('startDate');
+        $to = request('endDate');
+        
 
         $expense_query = Expense::whereUserId(auth()->id())->with('expense_category')
             ->whereBetween('entry_date', [$from, $to]);
 
         $income_query = Income::whereUserId(auth()->id())->with('income_category')
             ->whereBetween('entry_date', [$from, $to]);
+
+            // dump($income_query);
 
         $expense_total_amount = $expense_query->sum('amount');
         $income_total_amount = $income_query->sum('amount');
@@ -75,5 +76,11 @@ class MonthlyReportController extends Controller
                 'profit' => $profit
             ]
         );
+    }
+
+    public function pdfDownload()
+    {
+        $pdf = PDF::loadView('pdf.monthlyPDF');
+        return $pdf->download('monthlyPDF.pdf');
     }
 }

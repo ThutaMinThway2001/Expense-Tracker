@@ -11,6 +11,8 @@ class Income extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
+    protected $with = ['income_category', 'payment'];
+
     public function income_category()
     {
         return $this->belongsTo(IncomeCategory::class, 'income_category_id');
