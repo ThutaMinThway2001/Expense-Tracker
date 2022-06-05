@@ -4,7 +4,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4 col-sm-12">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-info text-white" id="basic-addon1"><i
@@ -13,7 +13,8 @@
                             <input type="text" class="form-control" name="startDate" id="start_date" placeholder="Start Date" readonly>
                         </div>
                     </div>
-                    <div class="col-md-6">
+
+                    <div class="col-md-4 col-sm-12">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-info text-white" id="basic-addon1"><i
@@ -22,10 +23,13 @@
                             <input type="text" class="form-control" name="endDate" id="end_date" placeholder="End Date" readonly>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <button id="filter" class="btn btn-outline-info btn-sm">Filter</button>
-                    <button id="clearFilter" class="btn btn-outline-warning btn-sm">Reset</button>
+
+                    <div class="col-md-4 col-sm-12">
+                        <div>
+                            <button id="filter" class="btn btn-outline-info btn-sm">Filter</button>
+                            <button id="clearFilter" class="btn btn-outline-warning btn-sm">Reset</button>
+                        </div>
+                    </div>
                 </div>
                 <table id="example" class="table table-bordered datatable" style="width:100%">
                     <thead>

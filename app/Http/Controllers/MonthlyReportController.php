@@ -26,8 +26,6 @@ class MonthlyReportController extends Controller
         $income_query = Income::whereUserId(auth()->id())->with('income_category')
             ->whereBetween('entry_date', [$from, $to]);
 
-            // dump($income_query);
-
         $expense_total_amount = $expense_query->sum('amount');
         $income_total_amount = $income_query->sum('amount');
         $profit = $income_total_amount - $expense_total_amount;
