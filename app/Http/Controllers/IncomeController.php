@@ -65,7 +65,7 @@ class IncomeController extends Controller
     {
         $payments = Payment::get()->pluck('name', 'id');
 
-        $income_categories = IncomeCategory::get()->pluck('name', 'id');
+        $income_categories = IncomeCategory::whereUserId(auth()->id())->with('income')->get()->pluck('name', 'id');
 
         return view('Income/create-income', [
             'income_categories' => $income_categories,
@@ -92,8 +92,8 @@ class IncomeController extends Controller
     public function edit(Income $income)
     {
         $incomes = Income::where('user_id', auth()->id())->latest()->get();
-        $income_categories = IncomeCategory::get()->pluck('name', 'id');
-        $payments = Payment::get()->pluck('name', 'id');
+        $income_categories = IncomeCategory::whereUserId(auth()->id())->with('income')->get()->pluck('name', 'id');
+        $payments = Payment::whereUserId(auth()->id())->get()->pluck('name', 'id');
         return view('Income/edit-income', [
             'incomes' => $incomes,
             'income' => $income,

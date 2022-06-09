@@ -5,6 +5,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4 col-sm-12">
+                        <label for="" class="text-bold"><h5>Start Date</h5></label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-info text-white" id="basic-addon1"><i
@@ -15,6 +16,7 @@
                     </div>
 
                     <div class="col-md-4 col-sm-12">
+                        <label for="" class="text-bold"><h5>End Date</h5></label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-info text-white" id="basic-addon1"><i
@@ -24,7 +26,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-12 d-flex justify-content-start align-items-center">
                         <div>
                             <button id="filter" class="btn btn-outline-info btn-sm">Filter</button>
                             <button id="clearFilter" class="btn btn-outline-warning btn-sm">Reset</button>

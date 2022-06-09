@@ -12,14 +12,9 @@ class MonthlyReportController extends Controller
 {
     public function index(Request $request)
     {
-
-        dump(request('startDate'));
-        dump(request('endDate'));
-
         $from = request('startDate');
         $to = request('endDate');
         
-
         $expense_query = Expense::whereUserId(auth()->id())->with('expense_category')
             ->whereBetween('entry_date', [$from, $to]);
 

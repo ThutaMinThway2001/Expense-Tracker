@@ -13,7 +13,7 @@ class ExpenseCategoryController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()){
-            $expenseCs = ExpenseCategory::query();
+            $expenseCs = ExpenseCategory::whereUserId(auth()->id())->with('expense');
             return DataTables::of($expenseCs)
             ->editColumn('updated_at', function($each){
                 return Carbon::parse($each->updated_at)->format('Y-m-d H-i-s');

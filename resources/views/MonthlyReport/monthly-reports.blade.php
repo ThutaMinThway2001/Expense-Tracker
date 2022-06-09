@@ -5,32 +5,35 @@
     <x-main>
         
         <form action="{{route('monthlyReports')}}" method="get">
-            <div class="grid grid-cols-6 gap-6">
-
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-info text-white" id="basic-addon1"><i
-                                class="fas fa-calendar-alt"></i></span>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for=""><h5>Start Date</h5></label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-info text-white" id="basic-addon1"><i
+                                        class="fas fa-calendar-alt"></i></span>
+                            </div>
+                            <input type="text" class="form-control" name="startDate" id="start_date" placeholder="Start Date" readonly>
+                        </div>
                     </div>
-                    <input type="text" class="form-control" name="startDate" id="start_date" placeholder="Start Date" readonly>
-                </div>
+                    <div class="col-md-4">
+                        <label for=""><h5>End Date</h5></label>
 
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text bg-info text-white" id="basic-addon1"><i
-                                class="fas fa-calendar-alt"></i></span>
+                        <div class="input-group mb-3 ">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-info text-white" id="basic-addon1"><i
+                                        class="fas fa-calendar-alt"></i></span>
+                            </div>
+                            <input type="text" class="form-control" name="endDate" id="end_date" placeholder="End Date" readonly>
+                        </div>
                     </div>
-                    <input type="text" class="form-control" name="endDate" id="end_date" placeholder="End Date" readonly>
+    
+    
+                    <div class="col-4 d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </div>
-
-
-                <div class="pt-6 mr-10 bg-gray-50 text-right sm:px-6">
-                    <button type="submit" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium
-                        rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2
-                        focus:ring-offset-2 focus:ring-indigo-500">Submit</button>
-                </div>
-
-                <a href="{{url('monthly-pdf')}}" class="btn btn-primary">PDF Don</a>
             </div>
         </form>
 

@@ -64,7 +64,7 @@ class ExpenseController extends Controller
     public function create()
     {
         $payments = Payment::get()->pluck('name', 'id');
-        $expense_categories = ExpenseCategory::get()->pluck('name', 'id');
+        $expense_categories = ExpenseCategory::whereUserId(auth()->id())->with('expense')->get()->pluck('name', 'id');
 
         return view('Expense/create-expense', [
             'expense_categories' => $expense_categories,
@@ -85,7 +85,7 @@ class ExpenseController extends Controller
     {
         $expense->delete();
 
-        return redirect()->route('indexExpense');
+        return 'success';
     }
 
     public function edit(Expense $expense)

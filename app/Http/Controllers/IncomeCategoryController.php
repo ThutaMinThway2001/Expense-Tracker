@@ -14,7 +14,7 @@ class IncomeCategoryController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()){
-            $incomeCs = IncomeCategory::query();
+            $incomeCs = IncomeCategory::whereUserId(auth()->id())->with('income');
             return DataTables::of($incomeCs)
             ->editColumn('updated_at', function($each){
                 return Carbon::parse($each->updated_at)->format('Y-m-d H-i-s');
